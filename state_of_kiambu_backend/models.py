@@ -36,7 +36,7 @@ TOPICS_CATEGORIES =(
 
 class article(models.Model):
   slug = models.CharField( primary_key=True ,max_length=50, null=False, blank=False, help_text="This is a unique identifier. It should be Unique for every article")
-  Menu = models.CharField(choices=TOPICS, max_length=20, help_text="This are the menu items, Be cautious as it affects how the article is displayed in the front end")
+  menu = models.CharField(choices=TOPICS, max_length=20, help_text="This are the menu items, Be cautious as it affects how the article is displayed in the front end")
   article_category = models.CharField(choices=TOPICS_CATEGORIES, blank=True, max_length=20, null=True, help_text="if the is no article category just leave blank")
   article_name = models.CharField(max_length=250, null=False, help_text="Can be Same as the Slug" )
   image = models.ImageField(upload_to ='uploads/')

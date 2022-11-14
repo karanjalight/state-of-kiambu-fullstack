@@ -1,0 +1,27 @@
+Add a sorting algorithm for:
+  article lists
+  article views
+
+modify database with recommendation, writer and time, id, article caption
+
+
+things are ordered by slug.
+  change to order by id
+
+HOME PAGE
+    paginate the posts
+    Sort the posts
+    lazy load the images
+
+Find the best storage
+  connect images to aws bucket
+
+Find where to deploy
+
+Deploy the site with a custom domain
+
+configuring the urls for the different pages
+
+user auth
+    
+

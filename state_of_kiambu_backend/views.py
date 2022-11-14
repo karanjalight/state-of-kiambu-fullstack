@@ -10,39 +10,145 @@ from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 from .models import *
 
 
+
+
+
 # Create your views here.
 
 #So I have pagineted (x) amount of items to be displaying on the front end
 
 def home(request):
 
-  #This is a list view of items found
-  user_list = User.objects.order_by('id').reverse()    #============      This reverse is used to order IN DESCENDING ORDER
-  page = request.GET.get('page', 1)
-  paginator = Paginator(user_list, 7)
+
   try:
-    users = paginator.page(page)
-  except PageNotAnInteger:
-    users = paginator.page(1)
-  except EmptyPage:
-    users = paginator.page(paginator.num_pages)
+    #The Queries
+    newsQ = article.objects.filter(menu="N")
+    marketsQ = article.objects.filter(menu="M")
+    politicsQ = article.objects.filter(menu="P")
+    fictionQ = article.objects.filter(menu="FP")
+    booksCultureQ = article.objects.filter(menu="BC")
+    humourCartoonsQ = article.objects.filter(menu="HC")
+    puzzlesGamesQ = article.objects.filter(menu="PG")
+    styleQ = article.objects.order_by('slug').reverse().filter(menu="S")
+
+    
+
+    page = request.GET.get('page', 1)
+    paginatorNews = Paginator(newsQ, 4)
+    paginatorMarkets = Paginator(marketsQ, 4)
+    paginatorPolitics = Paginator(politicsQ, 4)
+    paginatorFiction = Paginator(fictionQ, 4)
+    paginatorBooksCulture = Paginator(booksCultureQ, 4)
+    paginatorHumourCartoons = Paginator(humourCartoonsQ, 4)
+    paginatorPuzzleGames = Paginator(puzzlesGamesQ, 4)
+    paginatorStyle = Paginator(styleQ, 4)
+    try:
+      news = paginatorNews.page(page)
+      markets = paginatorMarkets.page(page)
+      politics = paginatorPolitics.page(page)
+      fiction = paginatorFiction.page(page)
+      booksCulture = paginatorBooksCulture.page(page)
+      humourCartoons = paginatorHumourCartoons.page(page)
+      puzzlesGames = paginatorPuzzleGames.page(page)
+      style = paginatorStyle.page(page)
+      
+
+    except PageNotAnInteger:
+      news = paginatorNews.page(1)
+      markets = paginatorMarkets.page(1)
+      politics = paginatorPolitics.page(1)
+      fiction = paginatorFiction.page(1)
+      booksCulture = paginatorBooksCulture.page(1)
+      humourCartoons = paginatorHumourCartoons.page(1)
+      puzzlesGames = paginatorPuzzleGames.page(1)
+      style = paginatorStyle.page(1)
+      
+
+    except EmptyPage:
+      news = paginatorNews.page(paginatorNews.num_pages)
+      markets = paginatorMarkets.page(paginatorMarkets.num_pages)
+      politics = paginatorPolitics.page(paginatorPolitics.num_pages)
+      fiction = paginatorFiction.page(paginatorFiction.num_pages)
+      booksCulture = paginatorBooksCulture.page(paginatorBooksCulture.num_pages)
+      humourCartoons = paginatorHumourCartoons.page(paginatorHumourCartoons.num_pages)
+      puzzlesGames = paginatorPuzzleGames.page(paginatorPuzzleGames.num_pages)
+      style = paginatorStyle.page(paginatorStyle.num_pages)
+
+  except:
+    print("failed")
+
+  
+ 
 
   #output  the  data in a simple form
   context = {
-    'users':users,
+    'news': news,
+    'markets': markets,
+    'politics': politics,
+    'fiction': fiction,
+    'booksCulture': booksCulture,
+    'humourCartoons': humourCartoons,
+    'puzzleGames': puzzlesGames,
+    'style': style,   
   }
+
+
+
+
    
   return render(request, 'home.html', context)
 
 
-def articlelistView(request):
-
-  return render(request, 'article-list.html')
 
 
-def articleView(request):
+#THis puts all the menu items in a single page
+def articlelistView(request, menu):
 
-  return render( request,'article-page.html')
+
+  TOPICS = request.GET.get('menu')
+
+  # add a sorting algortithm
+  topics = article.objects.order_by('slug').reverse().all().values('menu')
+  print(topics)
+  print(menu)
+
+  if topics:
+    artliclelists = article.objects.filter(menu=menu)
+    print(artliclelists)
+    print("it works")
+  else:
+    print(' Error Getting the article that matches the menu')
+
+
+  context = {
+    'artliclelists': artliclelists,
+  }
+  
+
+
+  return render(request, 'article-list.html', context)
+
+
+
+
+
+
+def articleView(request, slug):
+
+  #this line queries the specific article
+  articles = article.objects.filter(slug=slug)
+
+
+  #Reading more recommendation
+
+  #recommendation = article.objects.filter(recommended=0)
+
+  context = {
+    'articles': articles,
+  }
+
+
+  return render( request,'article-page.html', context)
 
 
 

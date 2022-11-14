@@ -349,15 +349,86 @@
 
 <body>
 
-
 {% comment %} 
-  {% for user in users  %}
 
-    <p>{{ user.username}} </p>
+
+  {% for article in markets  %}
+  <!--markets-->
+
+  <h3>Markets</h3>
+
+    <p>{{ article.slug }} </p>
      
   
   {% endfor %}
+
+  {% for article in politics  %}
+  <!--politics-->
+
+  <h3>Politics</h3>
+
+    <p>{{ article.slug }} </p>
+     
+  
+  {% endfor %}
+
+  {% for article in fiction  %}
+  <!--fiction-->
+
+  <h3>fiction</h3>
+
+    <p>{{ article.slug }} </p>
+     
+  
+  {% endfor %}
+
+  {% for article in booksCulture  %}
+  <!--booksCulture-->
+
+  <h3>booksCulture</h3>
+
+    <p>{{ article.slug }} </p>
+     
+  
+  {% endfor %}
+
+  {% for article in humourCartoons %}
+  <!--humourCartoons-->
+
+  <h3>humourCartoons</h3>
+
+    <p>{{ article.slug }} </p>
+     
+  
+  {% endfor %}
+
+  {% for article in puzzleGames  %}
+  <!--puzzleGames-->
+
+  <h3>puzzleGames</h3>
+
+    <p>{{ article.slug }} </p>
+     
+  
+  {% endfor %}
+
+  
+  {% for article in style  %}
+  <!--style-->
+
+  <h3>style</h3>
+
+    <p>{{ article.slug }} </p>
+     
+  
+  {% endfor %}
+
+
+
  {% endcomment %}
+
+
+
 
 
 
@@ -377,7 +448,7 @@
   <!--Nav Bar-->
 
 
-  <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light shadow" style="margin-bottom: 20px ; ">
+  <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light shadow " style="margin-bottom: 20px ; ">
     <div class="container">
 
       <a class="navbar-brand" href="#"><b>Kiambu Magazine </b></a>
@@ -424,43 +495,27 @@
       <!--======================================================================LEFT SIDE========================================================-->
       <div class="col-sm-3  order-sm-1 order-2 ">
         
-        <h1 class=" justicy-content-center " style=" margin-bottom:12px;">Sports</h1>
+        <h1 class=" justicy-content-center " style=" margin-bottom:12px;">Markets</h1>
 
-        <div class="cardi border-bottom border-success p-2 ">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="cardi-body">
-            <h5 class="card-title" style="color: rgb(185, 24, 24) ; margin-top: 12px;">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
+        {% for article in markets  %}
+        
+          <div class="cardi border-bottom border-success p-2 ">    
+            <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none;">        
+            <img src=" {{ article.image.url}} " class="card-img-top " style="width:100%;height:200px; object-fit:cover;"
+              alt="...">
+            
+            <div class="cardi-body">
+              <h5 class="card-title" style="color: rgb(185, 24, 24) ; margin-top: 12px;"> {{article.article_name}} </h5>
+           
+            </a>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
 
+            </div>
           </div>
-        </div>
-        <div class="cardi border-bottom border-success p-2">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="cardi-body">
-            <h5 class="card-title" style="color: rgb(185, 24, 24) ; margin-top: 12px;">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-
-          </div>
-        </div>
-
-        <div class="cardi border-bottom border-success p-2">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="cardi-body">
-            <h5 class="card-title" style="color: rgb(185, 24, 24) ; margin-top: 12px;">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-
-          </div>
-        </div>
-
         
 
-
+        {% endfor %}
 
       </div>
 
@@ -470,7 +525,7 @@
 
       <!--======================================================================centre SIDE========================================================-->
       <div class="col-sm-6 order-sm-2  order-1">
-        <h1 class=" justicy-content-center ">Most Recent</h1>
+        <h1 class=" justicy-content-center "> Recent News</h1>
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel"
           data-interval="4000">
           <ol class="carousel-indicators">
@@ -526,49 +581,35 @@
         <br>
 
 
+        <h1 class=" justicy-content-center "> Trending News</h1>
+
+        {% for article in news  %}
         <div class="cardi">
+          <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> 
           <div class="cardi-body border-top border-secondary p-1">
             <div class="row">
               <div class="col-8">
-                <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
+                <h4 style="color: rgb(185, 24, 24) ;"> {{ article.article_name}} </h4>
                 <p>
                   Viral This Week: Kenyans ask Riggy G to Give Comedian KK Job, Diana Marua Praise... Read more:
-                  https://www.tuko.co.ke/
+                  
                 </p>
+              </a>
+              
 
               </div>
-              <div class="col-4"><img
-                  src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
-                  class="d-block w-100" alt="..."></div>
+              <div class="col-4">
+                <img src=" {{ article.image.url }} " style="width:100%;height:150px; object-fit:cover;" class="d-block w-100" alt="news images">
+              </div>
+            
 
             </div>
 
           </div>
         </div>
 
-       
-
-       
-
-        <div class="cardi">
-          <div class="cardi-body border-top border-secondary p-1">
-            <div class="row">
-              <div class="col-8">
-                <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-                <p>
-                  Viral This Week: Kenyans ask Riggy G to Give Comedian KK Job, Diana Marua Praise... Read more:
-                  https://www.tuko.co.ke/
-                </p>
-
-              </div>
-              <div class="col-4"><img
-                  src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
-                  class="d-block w-100" alt="..."></div>
-
-            </div>
-
-          </div>
-        </div>
+        {% endfor %}
+        
       </div>
 
 
@@ -580,72 +621,34 @@
         <!-- Start of recommendations-->
         <div class="card shadow">
           <div class="card-header bg-success" style="color: rgb(255, 255, 255) ; text-align: center; font-size: 25px;">
-            Recommended For You
+            Politics
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+            {% for article in politics  %}
+              <li class="list-group-item">
+                
+                <div class="cardi  ">
+                  
+                  <h5> <strong><a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;">  {{ article.article_name }} </a> </strong> </h5>
+                  <div class="cardi-body ">
+                    <div class="row">
+                      <div class="col-8">
+                        <p><a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;">This is a blog website about a magazine  </a></p>
+                      </div>
+                      <div class="col-4">
+                        <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> <img src="{{ article.image.url }}" class="d-block w-100" alt="..." ></a>
+                      </div>
 
-              <div class="cardi  ">
-                <h5>Heading Title </h5>
-                <div class="cardi-body ">
-                  <div class="row">
-                    <div class="col-8">
-                      <p>This is a blog website about a magazine</p>
                     </div>
-                    <div class="col-4"><img
-                        src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
-                        class="d-block w-100" alt="..."></div>
 
                   </div>
-
+                  <p style="color: rgb(185, 24, 24) ;"><b> <i class="fa-solid fa-feather-pointed"></i> By Liz Wambui</b>
+                  </p>
                 </div>
-                <p style="color: rgb(185, 24, 24) ;"><b> <i class="fa-solid fa-feather-pointed"></i> By Liz Wambui</b>
-                </p>
-              </div>
-            </li>
+              </li>
+            {% endfor %}
 
-            <li class="list-group-item">
-
-              <div class="cardi  ">
-                <h5>Heading Title </h5>
-                <div class="cardi-body ">
-                  <div class="row">
-                    <div class="col-8">
-                      <p>This is a blog website about a magazine</p>
-                    </div>
-                    <div class="col-4"><img
-                        src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
-                        class="d-block w-100" alt="..."></div>
-
-                  </div>
-
-                </div>
-                <p style="color: rgb(185, 24, 24) ;"><b><i class="fa-solid fa-feather-pointed"></i> By Liz Wambui</b>
-                </p>
-              </div>
-            </li>
-
-
-            <li class="list-group-item">
-
-              <div class="cardi   ">
-                <h5>Heading Title </h5>
-                <div class="cardi-body ">
-                  <div class="row">
-                    <div class="col-8">
-                      <p>This is a blog website about a magazine</p>
-                    </div>
-                    <div class="col-4"><img
-                        src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg"
-                        class="d-block w-100" alt="..."></div>
-
-                  </div>
-
-                </div>
-                <p style="color: rgb(185, 24, 24) ;"> <i class="fa-solid fa-feather-pointed"></i><b> By Liz Wambui</b>
-                </p>
-              </div>
-            </li>
+    
           </ul>
         </div>
         <!-- end of recommendations-->
@@ -655,72 +658,36 @@
 
         <div class="card shadow">
           <div class="card-header bg-dark" style="color: rgb(255, 255, 255) ; text-align: center; font-size: 25px;  ">
-            Healthy Living
+            Books and Culture
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
 
-              <div class="cardi  ">
-                <h5>Heading Title </h5>
-                <div class="cardi-body ">
-                  <div class="row">
-                    <div class="col-8">
-                      <p>This is a blog website about a magazine</p>
+            {% for article in booksCulture %}
+              <li class="list-group-item">
+
+                <div class="cardi  ">
+                  <h5><a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> {{article.article_name}}</a></h5>
+                  <div class="cardi-body ">
+                    <div class="row">
+                      <div class="col-8">
+                        <p><a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> This is a blog website about a magazine  </a></p>
+                      </div>
+                      <div class="col-4"><a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;">
+                         <img src="{{ article.image.url}}"  class="d-block w-100" alt="...">
+                      </a>
+                        
+                        </div>
+
                     </div>
-                    <div class="col-4"><img
-                        src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
-                        class="d-block w-100" alt="..."></div>
 
                   </div>
-
+                  <p style="color: rgb(185, 24, 24) ;"><b> <i class="fa-solid fa-feather-pointed"></i> By Liz Wambui</b>
+                  </p>
                 </div>
-                <p style="color: rgb(185, 24, 24) ;"><b> <i class="fa-solid fa-feather-pointed"></i> By Liz Wambui</b>
-                </p>
-              </div>
-            </li>
+              </li>
+            {% endfor %}
 
-            <li class="list-group-item">
-
-              <div class="cardi  ">
-                <h5>Heading Title </h5>
-                <div class="cardi-body ">
-                  <div class="row">
-                    <div class="col-8">
-                      <p>This is a blog website about a magazine</p>
-                    </div>
-                    <div class="col-4"><img
-                        src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
-                        class="d-block w-100" alt="..."></div>
-
-                  </div>
-
-                </div>
-                <p style="color: rgb(185, 24, 24) ;"><b><i class="fa-solid fa-feather-pointed"></i> By Liz Wambui</b>
-                </p>
-              </div>
-            </li>
-
-
-            <li class="list-group-item">
-
-              <div class="cardi   ">
-                <h5>Heading Title </h5>
-                <div class="cardi-body ">
-                  <div class="row">
-                    <div class="col-8">
-                      <p>This is a blog website about a magazine</p>
-                    </div>
-                    <div class="col-4"><img
-                        src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg"
-                        class="d-block w-100" alt="..."></div>
-
-                  </div>
-
-                </div>
-                <p style="color: rgb(185, 24, 24) ;"> <i class="fa-solid fa-feather-pointed"></i><b> By Liz Wambui</b>
-                </p>
-              </div>
-            </li>
+           
           </ul>
         </div>
         <!-- end of trending-->
@@ -735,87 +702,30 @@
 
   <!--Section 2 of the body-->
   <div class="landing overflow-hidden mx-auto">
-    <h2 class=" text-center  ">Most Read</h2>
+    <h3 class=" text-center  ">Puzzles and Games</h3>
   </div>
 
   <div class="landing mx-auto  overflow-auto shadow ">
 
 
     <div class="row flex-row no-gutters w-100 flex-nowrap" style=" margin-bottom:1px; ">
-      <div class="col-5 padding-0">
-        <div class="cardi card-block" style="margin-right: 2%;">
-          <!--=======================================================================SETTING HEIGHT============================-->
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100"
-            alt="...">
-          <div class="cardi-body" style="margin-right: 20px ;">
-            <h5 class="card-title" style="color:rgb(17, 19, 16) ; font-size: 20px; ">If we stack multiple column classes
-            </h5>
-            <div class="container " >
-              <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago
-            </div>
 
+      {% for article in puzzleGames  %}
+        <div class="col-5 padding-0">
+          <div class="cardi card-block" style="margin-right: 2%;">
+            
+            <!--=======================================================================SETTING HEIGHT============================-->
+            <img src="{{ article.image.url }}" class="img-fluid w-100" alt="..." style="width:100%;height:370px; object-fit:cover;" >
+            <div class="cardi-body" style="margin-right: 20px ;">
+              <h5 class="card-title" style="color:rgb(17, 19, 16) ; font-size: 20px; "> {{ article.article_name}}            </h5>
+              <div class="container " >
+                <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-5 padding-0">
-        <div class="cardi card-block" style="margin-right: 2%;">
-          <!--=======================================================================SETTING HEIGHT============================-->
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100"
-            alt="...">
-          <div class="cardi-body" style="margin-right: 20px ;">
-            <h5 class="card-title" style="color:rgb(17, 19, 16) ; font-size: 20px; ">If we stack multiple column classes
-            </h5>
-            <div class="container " >
-              <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-5 padding-0">
-        <div class="cardi card-block" style="margin-right: 2%;">
-          <!--=======================================================================SETTING HEIGHT============================-->
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100"
-            alt="...">
-          <div class="cardi-body" style="margin-right: 20px ;">
-            <h5 class="card-title" style="color:rgb(17, 19, 16) ; font-size: 20px; ">If we stack multiple column classes
-            </h5>
-            <div class="container " >
-              <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-5 ">
-        <div class="cardi card-block" style="margin-right: 2%;">
-          <!--=======================================================================SETTING HEIGHT============================-->
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100"
-            alt="...">
-          <div class="cardi-body">
-            <h5 class="card-title" style=" font-size: 20px;  ">collaborating and sharing organizational knowledge.</h5>
-            <div class="container " style=" text-align:right; ">
-              <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="cardi card-block" style="margin-right: 2%;">
-          <!--=======================================================================SETTING HEIGHT============================-->
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100"
-            alt="...">
-          <div class="cardi-body">
-            <h5 class="card-title" style=" font-size: 20px; ">Businesses Owned by Radio Present.</h5>
-
-            <div class="container " style=" text-align:right; ">
-              <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago
-            </div>
-
-          </div>
-        </div>
-      </div>
+      {% endfor %}
 
     </div>
   </div>
