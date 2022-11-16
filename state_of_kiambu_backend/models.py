@@ -1,17 +1,21 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.contrib.auth import get_user_model
+
 
 # Create your models here.
 
 
 TOPICS = (
-    ('N', 'News'),
-    ('M', 'Markets'),
-    ('P', 'Politics'),
-    ('FP', 'Fiction and Poetry'),
-    ('BC', 'Books and Culture'),
-    ('HC', 'Humour and Cartoons'),
-    ('PG', 'Puzzles and Games'),
-    ('S', 'Style'),
+    ('News', 'News'),
+    ('Markets', 'Markets'),
+    ('Politics', 'Politics'),
+    ('Fiction-and-Poetry', 'Fiction and Poetry'),
+    ('Books-and-Culture', 'Books and Culture'),
+    ('Humour-and-Cartoons', 'Humour and Cartoons'),
+    ('Puzzles-and-Games', 'Puzzles and Games'),
+    ('Style', 'Style'),
         
 )
 

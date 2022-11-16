@@ -275,9 +275,23 @@
       flex: 1 0 60.6 !important;
     }
 
+    .Register{
+      height:600px;
+      background-image: url("https://media.istockphoto.com/id/1082411378/photo/magical-fairytale-forest.jpg?s=612x612&w=0&k=20&c=3iw53YdeeFEqRuxcUL0UCQZUMJ3e2IRtUfvgSjAysjQ=");
+      object-fit:contain;
+      opacity:0.9;
+      color: black;
+    }
+
+
+
 
 
     @media screen and (max-width: 450px) {
+      .Register{
+        height:500px;
+      }
+  
 
 
 
@@ -323,6 +337,8 @@
       background-color: #cccccc;
       height:400px;
     }
+
+
   </style>
 
 <script src="https://kit.fontawesome.com/687cfff67f.js" crossorigin="anonymous"></script>
@@ -331,13 +347,22 @@
 <body>
 
 
+  <div class="w-100 justify-content-center " style="text-align: center; font-size: 40px;">
+    <h3 style="text-align: center; font-size: 40px; font-family: 'Times New Roman', Times, serif; font-weight: 24px; ">
+      The State of</h3>
+    <h3 style="text-align: center; font-size: 40px; font-family: 'Times New Roman', Times, serif; font-weight: 24px; ">
+      Kiambu Magazine</h3>
+    <p style=" font-size: 16px;  font-family: 'Times New Roman', Times, serif;   "> Don't sleep. Stay awake. These are interesting Times</p>
+  </div>
+
+
   <!--Nav Bar-->
 
 
   <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light shadow" style="margin-bottom: 0px ;">
     <div class="container">
 
-      <a class="navbar-brand" href="#"><b>Kiambu Magazine </b></a>
+      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -348,19 +373,36 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">News</a>
+         
+          <li class="nav-item active">
+            <a class="nav-link" href="#footer">About Us <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Stocks</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#footer">Contact Us <span class="sr-only">(current)</span></a>
           </li>
+              
+
+         
+        </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          {% if user.is_authenticated %}
+
+          
           <li class="nav-item">
-            <a class="nav-link" href="#">Poetry</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Most read</a>
+            <a class="nav-link waves-effect rounded-top rounded-bottom" href="{% url 'logout' %}"  style="color: black;"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp       {{ user.username }}  
+              </a>
           </li>
 
+          {% else %}
+
+          <li class="nav-item active">
+            <a class="nav-link bg-grey" href="{% url 'login' %}"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp Sign In<span class="sr-only">(current)</span></a>
+          </li>
+          
+         
+         
+          {% endif %}
+         
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search">
@@ -382,7 +424,7 @@
   
 
 
-  <footer class="mainfooter" role="contentinfo">
+  <footer class="mainfooter" id='footer' role="contentinfo">
     <div class="footer-middle">
       <div class="container">
         <div class="row">
@@ -490,3 +532,6 @@
 </body>
 
 </html>
+
+
+

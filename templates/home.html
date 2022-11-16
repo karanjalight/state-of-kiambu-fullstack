@@ -247,12 +247,16 @@
       position: absolute;
     }
 
+    h2{
+      color:black !important;
+    }
+
 
 
     h2 {
       font-family: sans-serif;
 
-      color: #228B22;
+      color: black;
       text-align: center;
       font-size: 30px;
       max-width: auto;
@@ -451,7 +455,6 @@
   <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light shadow " style="margin-bottom: 20px ; ">
     <div class="container">
 
-      <a class="navbar-brand" href="#"><b>Kiambu Magazine </b></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -460,22 +463,40 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">News</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#footer">About Us <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Stocks</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#footer">Contact Us <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Poetry</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Most read</a>
-          </li>
+                  
+          
 
         </ul>
+        
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          {% if user.is_authenticated %}
+
+          
+          <li class="nav-item">
+            <a class="nav-link waves-effect rounded-top rounded-bottom" href="{% url 'logout' %}"  style="color: black;"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp       {{ user.username }}  
+            </a>
+          </li>
+
+          {% else %}
+
+          <li class="nav-item active">
+            <a class="nav-link bg-grey" href="{% url 'login' %}"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp Sign In<span class="sr-only">(current)</span></a>
+          </li>
+          
+         
+         
+          {% endif %}
+         
+        </ul>
+        
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -495,7 +516,7 @@
       <!--======================================================================LEFT SIDE========================================================-->
       <div class="col-sm-3  order-sm-1 order-2 ">
         
-        <h1 class=" justicy-content-center " style=" margin-bottom:12px;">Markets</h1>
+        <h1 class=" justicy-content-center " style=" margin-bottom:12px;color:black;">Markets</h1>
 
         {% for article in markets  %}
         
@@ -505,7 +526,7 @@
               alt="...">
             
             <div class="cardi-body">
-              <h5 class="card-title" style="color: rgb(185, 24, 24) ; margin-top: 12px;"> {{article.article_name}} </h5>
+              <h5 class="card-title" style="color:black; ; margin-top: 12px;"> {{article.article_name}} </h5>
            
             </a>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -524,8 +545,8 @@
       
 
       <!--======================================================================centre SIDE========================================================-->
-      <div class="col-sm-6 order-sm-2  order-1">
-        <h1 class=" justicy-content-center "> Recent News</h1>
+      <div class="col-sm-6 order-sm-2  order-1" style="color:black;">
+        <h1 class=" justicy-content-center "  style="color:black;"> Recent News</h1>
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel"
           data-interval="4000">
           <ol class="carousel-indicators">
@@ -539,7 +560,7 @@
                 <img src="https://familydoctor.org/wp-content/uploads/2018/02/41808433_l.jpg" class="card-img-top"
                   alt="...">
                 <div class="card-body">
-                  <h4 style="color: rgb(24, 185, 51) ;">Doctors have been complaining about ...</h4>
+                  <h4 style=" style="color:black;"">Doctors have been complaining about ...</h4>
 
                 </div>
               </div>
@@ -550,7 +571,7 @@
                   src="https://cdn.britannica.com/56/166656-050-647D185C/Uhuru-Kenyatta-president-inauguration-Kenya-2013.jpg"
                   class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h4 style="color: rgb(24, 185, 51) ;">Uhuru made remarks concerning ... </h4>
+                  <h4 style=" style="color:black;"">Uhuru made remarks concerning ... </h4>
 
                 </div>
               </div>
@@ -561,7 +582,7 @@
                   src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/rockcms/2022-03/black-lab-favorite-dog-main-220315-e8e0ee.jpg"
                   class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h4 style="color: rgb(24, 185, 51) ;">I bet you didn't know this ...</h4>
+                  <h4  style="color:black;">I bet you didn't know this ...</h4>
 
                 </div>
               </div>
@@ -581,7 +602,7 @@
         <br>
 
 
-        <h1 class=" justicy-content-center "> Trending News</h1>
+        <h1 class=" justicy-content-center "  style="color:black;"> Trending News</h1>
 
         {% for article in news  %}
         <div class="cardi">
@@ -589,7 +610,7 @@
           <div class="cardi-body border-top border-secondary p-1">
             <div class="row">
               <div class="col-8">
-                <h4 style="color: rgb(185, 24, 24) ;"> {{ article.article_name}} </h4>
+                <h4  style="color:black;"> {{ article.article_name}} </h4>
                 <p>
                   Viral This Week: Kenyans ask Riggy G to Give Comedian KK Job, Diana Marua Praise... Read more:
                   
@@ -618,9 +639,9 @@
       <!--======================================================================Right SIDE========================================================-->
       <div class="col-sm-3  order-sm-3 order-3 ">
         
-        <!-- Start of recommendations-->
+        
         <div class="card shadow">
-          <div class="card-header bg-success" style="color: rgb(255, 255, 255) ; text-align: center; font-size: 25px;">
+          <div class="card-header bg-dark" style="color: rgb(255, 255, 255) ; text-align: center; font-size: 25px;">
             Politics
           </div>
           <ul class="list-group list-group-flush">
@@ -700,9 +721,11 @@
 
   <br>
 
+  <!--==============================================================Puzzles and Games===================================================================================================-->
+
   <!--Section 2 of the body-->
   <div class="landing overflow-hidden mx-auto">
-    <h3 class=" text-center  ">Puzzles and Games</h3>
+    <h2 class=" text-center  ">Puzzles and Games</h2>
   </div>
 
   <div class="landing mx-auto  overflow-auto shadow ">
@@ -734,66 +757,61 @@
 
   <!--==============================================================POETRY===================================================================================================-->
 
+  <div class="landing  overflow-hidden mx-auto">
+    <div class="row">
+      <div class="col-6">
+        <h2 class="text-center"> Poetry </h2>
+        <div class="shadow">
+
+          {% for article in fiction %}
+            <div class="card m-2">
+              
+              <div class="card-body">
+                <div class="row">
+                  
+                  <div class="col-sm-10">
+                    <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> 
+                    <h5>{{article.article_name}} </h5>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <p> <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
 
 
-  <div class="container shadow p-2" style="margin-top: 3% ;">
-    <h2 class="text-center">Poetry</h2>
-    <div class="card m-2">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-10">
-            <h5>Maina Kageni: List of Expensive Properties and Businesses Owned by Radio Present... </h5>
-          </div>
-          <div class="col-sm-2">
-            <p> <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago </p>
-          </div>
         </div>
       </div>
-    </div>
+       <div class="col-6">
+        <h2 class="text-center"> Humour</h2>
 
-    <div class="card m-2">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-10">
-            <h5>Maina Kageni: List of Expensive Properties and Businesses Owned by Radio Present... </h5>
-          </div>
-          <div class="col-sm-2">
-            <p> <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago </p>
+        {% for article in humourCartoons %}
+        <div class="card m-2">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-2">
+                <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> 
+                <img src="{{ article.image.url }}" class="img-fluid w-100" alt="..." >
+              </div>
+
+              <div class="col-sm-10">
+                <h5>{{ article.article_name}} </h5>
+              </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      {% endfor %}
 
-    <div class="card m-sm-2">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-10">
-            <h5>Maina Kageni: List of Expensive Properties and Businesses Owned by Radio Present... </h5>
-          </div>
-          <div class="col-sm-2">
-            <p> <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago </p>
-          </div>
-        </div>
+        
       </div>
-    </div>
-
-    <div class="card m-2">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-10">
-            <h5>Maina Kageni: List of Expensive Properties and Businesses Owned by Radio Present... </h5>
-          </div>
-          <div class="col-sm-2">
-            <p> <i style='font-size:18px ; color: red;' class='far'>&#xf017;</i> &nbsp; 20 hours ago </p>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 
-
-
-  </div>
 
 
 
@@ -801,100 +819,29 @@
 
 
 
-  <!--Section 3-->
+  <!--Section 3  ==============================  STYLE==================-->
 
   <div class="landing  overflow-hidden mx-auto" style="margin-top: 3%; ">
-    <h2 class="text-center m-3 ">Music</h2>
+    <h2 class="text-center m-3 ">Style</h2>
     <div class="row">
 
+    {% for article in style  %}
       <div class="col-sm-3">
         <div class="card" style="margin-bottom:30px ;">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
+          <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> 
+          <img src=" {{ article.image.url }} " class="card-img-top"
+            alt="..."></a>
           <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
+            <h4 style="color: rgb(185, 24, 24) ;"> <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none; color: black;"> {{article.article_name}}</a> </h4>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
               content.</p>
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h4 style="color: rgb(185, 24, 24) ;">Heading Title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
+
+    {% endfor %}
+
+
     </div>
   </div>
 
@@ -905,7 +852,7 @@
   <!--footer-->
 
 
-  <footer class="mainfooter" role="contentinfo">
+  <footer class="mainfooter" role="contentinfo" id='footer'>
     <div class="footer-middle">
       <div class="container">
         <div class="row">

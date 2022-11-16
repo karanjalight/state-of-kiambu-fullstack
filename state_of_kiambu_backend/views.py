@@ -7,13 +7,41 @@ from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 
 
 
+
+
 from .models import *
+
+#User authentication
+
+from .forms import CreateUserForm
+
+from django.contrib.auth.decorators import login_required
+
+
+
+def Signup(request):
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = CreateUserForm()
+    return render(request, 'Register.html', {'form': form})
+
+
 
 
 
 
 
 # Create your views here.
+
+
 
 #So I have pagineted (x) amount of items to be displaying on the front end
 
@@ -22,6 +50,7 @@ def home(request):
 
   try:
     #The Queries
+    allQ = article.objects.all()
     newsQ = article.objects.filter(menu="N")
     marketsQ = article.objects.filter(menu="M")
     politicsQ = article.objects.filter(menu="P")
@@ -34,6 +63,7 @@ def home(request):
     
 
     page = request.GET.get('page', 1)
+    paginatorall = Paginator(allQ, 3)
     paginatorNews = Paginator(newsQ, 4)
     paginatorMarkets = Paginator(marketsQ, 4)
     paginatorPolitics = Paginator(politicsQ, 4)
@@ -43,6 +73,7 @@ def home(request):
     paginatorPuzzleGames = Paginator(puzzlesGamesQ, 4)
     paginatorStyle = Paginator(styleQ, 4)
     try:
+      all = paginatorall.page(page)
       news = paginatorNews.page(page)
       markets = paginatorMarkets.page(page)
       politics = paginatorPolitics.page(page)
@@ -54,6 +85,7 @@ def home(request):
       
 
     except PageNotAnInteger:
+      all = paginatorall.page(1)
       news = paginatorNews.page(1)
       markets = paginatorMarkets.page(1)
       politics = paginatorPolitics.page(1)
@@ -65,6 +97,7 @@ def home(request):
       
 
     except EmptyPage:
+      all1 = paginatorall.page(paginatorNews.num_pages)
       news = paginatorNews.page(paginatorNews.num_pages)
       markets = paginatorMarkets.page(paginatorMarkets.num_pages)
       politics = paginatorPolitics.page(paginatorPolitics.num_pages)
@@ -82,13 +115,14 @@ def home(request):
 
   #output  the  data in a simple form
   context = {
-    'news': news,
-    'markets': markets,
-    'politics': politics,
-    'fiction': fiction,
-    'booksCulture': booksCulture,
+    'all': all,
+    'news': news,       #done
+    'markets': markets,   #done
+    'politics': politics, #done
+    'fiction': fiction,   #done
+    'booksCulture': booksCulture,   #done
     'humourCartoons': humourCartoons,
-    'puzzleGames': puzzlesGames,
+    'puzzleGames': puzzlesGames,  #done
     'style': style,   
   }
 
@@ -109,13 +143,12 @@ def articlelistView(request, menu):
 
   # add a sorting algortithm
   topics = article.objects.order_by('slug').reverse().all().values('menu')
-  print(topics)
   print(menu)
 
   if topics:
     artliclelists = article.objects.filter(menu=menu)
     print(artliclelists)
-    print("it works")
+    
   else:
     print(' Error Getting the article that matches the menu')
 
