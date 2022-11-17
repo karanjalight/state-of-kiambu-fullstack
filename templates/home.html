@@ -342,6 +342,44 @@
     }
 
     
+.button {
+  border-radius: 4px;
+  background-color: green;
+  border: none;
+  color: #FFFF;
+  font-size: 20px;
+  padding: 8px;
+  width: 200px;
+  transition: all 0.7s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.6s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.7s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    
 
   </style>
 
@@ -352,6 +390,8 @@
 </head>
 
 <body>
+
+  
 
 {% comment %} 
 
@@ -488,7 +528,7 @@
           {% else %}
 
           <li class="nav-item active">
-            <a class="nav-link bg-grey" href="{% url 'login' %}"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp Sign In<span class="sr-only">(current)</span></a>
+            <a class="nav-link bg-grey" href="{% url 'login' %}">&nbsp Sign In<span class="sr-only">(current)</span></a>
           </li>
           
          
@@ -531,6 +571,9 @@
             </a>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                 content.</p>
+                <a href=" {% url 'articleview' article.menu %} " style="text-decoration:none;">
+              <button class="button"><span>   Read More  </span></button></a>
+
 
             </div>
           </div>
@@ -630,6 +673,8 @@
         </div>
 
         {% endfor %}
+
+        
         
       </div>
 
@@ -725,7 +770,7 @@
 
   <!--Section 2 of the body-->
   <div class="landing overflow-hidden mx-auto">
-    <h2 class=" text-center  ">Puzzles and Games</h2>
+    <h2 class=" text-center  "> Games</h2>
   </div>
 
   <div class="landing mx-auto  overflow-auto shadow ">
@@ -759,7 +804,7 @@
 
   <div class="landing  overflow-hidden mx-auto">
     <div class="row">
-      <div class="col-6">
+      <div class="col-sm-6">
         <h2 class="text-center"> Poetry </h2>
         <div class="shadow">
 
@@ -785,7 +830,7 @@
 
         </div>
       </div>
-       <div class="col-6">
+       <div class="col-sm-6">
         <h2 class="text-center"> Humour</h2>
 
         {% for article in humourCartoons %}

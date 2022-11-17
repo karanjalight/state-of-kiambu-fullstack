@@ -51,14 +51,14 @@ def home(request):
   try:
     #The Queries
     allQ = article.objects.all()
-    newsQ = article.objects.filter(menu="N")
-    marketsQ = article.objects.filter(menu="M")
-    politicsQ = article.objects.filter(menu="P")
-    fictionQ = article.objects.filter(menu="FP")
-    booksCultureQ = article.objects.filter(menu="BC")
-    humourCartoonsQ = article.objects.filter(menu="HC")
-    puzzlesGamesQ = article.objects.filter(menu="PG")
-    styleQ = article.objects.order_by('slug').reverse().filter(menu="S")
+    newsQ = article.objects.filter(menu="News")
+    marketsQ = article.objects.filter(menu="Markets")
+    politicsQ = article.objects.filter(menu="Politics")
+    fictionQ = article.objects.filter(menu="Fiction-and-Poetry")
+    booksCultureQ = article.objects.filter(menu="Books-and-Culture")
+    humourCartoonsQ = article.objects.filter(menu="Humour-and-Cartoons")
+    puzzlesGamesQ = article.objects.filter(menu="Puzzles-and-Games")
+    styleQ = article.objects.order_by('slug').reverse().filter(menu="Style")
 
     
 

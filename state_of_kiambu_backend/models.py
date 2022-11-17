@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 
 
+
 # Create your models here.
 
 
@@ -44,10 +45,14 @@ class article(models.Model):
   article_category = models.CharField(choices=TOPICS_CATEGORIES, blank=True, max_length=20, null=True, help_text="if the is no article category just leave blank")
   article_name = models.CharField(max_length=250, null=False, help_text="Can be Same as the Slug" )
   image = models.ImageField(upload_to ='uploads/')
-  article = models.CharField(max_length=1500, blank=False, help_text='To separate paragraphs, use the tag <br> between to represent a space between the paragraphs') 
+  article_paragraph_1 = models.CharField(max_length=1500, blank=True, help_text='Input text for the first part here') 
+  article_paragraph_2 = models.CharField(max_length=1500, blank=True, help_text='Input text for the second part here') 
+  article_caption = models.CharField(max_length=25, blank=False)
+  writer = models.CharField(max_length=50, blank=True, help_text="article writer's name" )
+  recommended = models.BooleanField(default=False)
+  date = models.DateField(blank=True,auto_now=True)
   
-
-
 
   def __str__(self):
     return self.article_name
+

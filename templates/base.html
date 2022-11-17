@@ -388,15 +388,15 @@
           {% if user.is_authenticated %}
 
           
-          <li class="nav-item">
+        {% comment %}   <li class="nav-item">
             <a class="nav-link waves-effect rounded-top rounded-bottom" href="{% url 'logout' %}"  style="color: black;"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp       {{ user.username }}  
               </a>
           </li>
-
+ {% endcomment %}
           {% else %}
 
           <li class="nav-item active">
-            <a class="nav-link bg-grey" href="{% url 'login' %}"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp Sign In<span class="sr-only">(current)</span></a>
+            <a class="nav-link bg-grey" href="{% url 'login' %}"> &nbsp Sign In<span class="sr-only">(current)</span></a>
           </li>
           
          
