@@ -251,10 +251,12 @@ def articleView(request, slug):
 
   #Reading more recommendation
 
-  #recommendation = article.objects.filter(recommended=0)
+  recommendation = article.objects.filter(recommended=1)
+  print(recommendation)
 
   context = {
     'articles': articles,
+    'recommendation':recommendation,
   }
 
 

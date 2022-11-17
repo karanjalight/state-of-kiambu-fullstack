@@ -28,7 +28,11 @@
 
       {{ article.article_paragraph_1 }}
 
+
     </p>
+    <br>
+      <br>
+
     <div class="container-fluid bg-dark  " style="height:150px;">
       
       <h5 style="font-size:40px; color:white; text-align:center; padding:40px;">ADS SPACE</h1>
@@ -37,18 +41,26 @@
 
 
     <p>
+      <br>
+      <br>
 
       {{ article.article_paragraph_2 }}
 
     </p>
   </div>
 
+  <br>
+  <br>
+  <br>
+
+
+
 
   <div class="container">
     <p   style="color: black ;"> Written By</p>
-    <i class="fa-solid fa-feather-pointed"></i><hp style="color:green ;"> <span></span>  &nbsp; <b>  {{ article.writer}} 
+    <i class="fa-solid fa-feather-pointed"></i><hp style="color:green ;font-size:20px;"> <span></span>  &nbsp; <b>  {{ article.writer}} 
       <br> 
-    <p style="color: black ;"> {{article.date}}</p>
+    <p style="color: black ;font-size:18px;"> {{article.date}}</p>
 
     </p>
 
@@ -66,43 +78,27 @@
     
     
     <div class="row flex-row no-gutters w-100 flex-nowrap" style=" margin-bottom:20px; ">
+      {% for article in recommendation %}
         <div class="col-6 padding-0" >
-            <div class="cardi card-block" style="margin-right: 5%;" > <!--=======================================================================SETTING HEIGHT============================-->
-              <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100" alt="...">
+          
+            <div class="cardi card-block" style="margin-right: 5%;" > 
+              
+            
+              <a href=" {% url 'articleview' article.slug %} " style="text-decoration:none;">
+              <img src="{{article.image.url}}" class="img-fluid w-100" alt="..." style="height:300px; object-fit:cover;" >
+
               <div class="cardi-body" style="margin-right: 20px ;" >
-                <h5 class="card-title" style="color:black ; font-size: 20px; ">If we stack multiple column classes</h5>
+                <h5 class="card-title" style="color:black ; font-size: 20px; ">{{article.article_name}}</h5>
+              </a>
+                <p> {{article.article_caption}}... </p>
                 <div class="container " style=" text-align:right; ">
-                  <i style='font-size:18px' class='far'>&#xf017;</i> 20 hours ago
-                </div>
+                  <i style='font-size:18px;' class='far'>&#xf017;</i> {{article.date}}       </div>
                 
               </div>
             </div>
+          
         </div>
-        <div class="col-6 " >
-          <div class="cardi card-block"   style="margin-right: 5%;" > <!--=======================================================================SETTING HEIGHT============================-->
-            <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100" alt="...">
-            <div class="cardi-body" >
-              <h5 class="card-title" style="color:black ; font-size: 20px;  ">collaborating and sharing organizational knowledge.</h5>
-              <div class="container " style=" text-align:right; ">
-                <i style='font-size:18px' class='far'>&#xf017;</i>20 hours ago
-              </div>
-              
-            </div>
-          </div>
-      </div>
-      <div class="col-6" >
-        <div class="cardi card-block"  style="margin-right: 5%;" > <!--=======================================================================SETTING HEIGHT============================-->
-          <img src="https://www.monaco.edu/app/uploads/sites/4/2021/07/Sports_Management.jpg" class="img-fluid w-100" alt="...">
-          <div class="cardi-body" >
-            <h5 class="card-title" style="color:black ; font-size: 20px; ">Businesses Owned by Radio Present.</h5>
-
-            <div class="container " style=" text-align:right; ">
-              <i style='font-size:18px' class='far'>&#xf017;</i>     20 hours ago
-            </div>
-            
-          </div>
-        </div>
-    </div>
+        {% endfor %}>
        
     </div>
 </div>
