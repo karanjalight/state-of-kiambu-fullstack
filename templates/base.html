@@ -340,6 +340,9 @@
 
 
   </style>
+  <link rel="icon" href="https://image.shutterstock.com/image-vector/blog-icon-on-white-background-260nw-361855340.jpg" type="image/x-icon">
+
+
 
 <script src="https://kit.fontawesome.com/687cfff67f.js" crossorigin="anonymous"></script>
 </head>
@@ -380,19 +383,13 @@
           <li class="nav-item active">
             <a class="nav-link" href="#footer">Contact Us <span class="sr-only">(current)</span></a>
           </li>
-              
-
-         
-        </ul>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           {% if user.is_authenticated %}
 
           
-        {% comment %}   <li class="nav-item">
-            <a class="nav-link waves-effect rounded-top rounded-bottom" href="{% url 'logout' %}"  style="color: black;"><i class="fas fa-user fa-lg me-3 fa-fw"></i> &nbsp       {{ user.username }}  
+         <li class="nav-item">
+            <a class="nav-link waves-effect rounded-top rounded-bottom" href="{% url 'logout' %}"  style="color: black;"> Hi&nbsp {{ user.username }}!
               </a>
           </li>
- {% endcomment %}
           {% else %}
 
           <li class="nav-item active">
@@ -402,6 +399,12 @@
          
          
           {% endif %}
+              
+
+         
+        </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          
          
         </ul>
         <form class="form-inline my-2 my-lg-0">

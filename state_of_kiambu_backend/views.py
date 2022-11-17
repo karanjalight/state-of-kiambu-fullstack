@@ -110,6 +110,71 @@ def home(request):
   except:
     print("failed")
 
+
+#==========THE LIST VIEWS==================
+  
+  try:
+    #The Queries
+    allQL = article.objects.all()
+    newsQL = article.objects.filter(menu="News")
+    marketsQL = article.objects.filter(menu="Markets")
+    politicsQL = article.objects.filter(menu="Politics")
+    fictionQL = article.objects.filter(menu="Fiction-and-Poetry")
+    booksCultureQL = article.objects.filter(menu="Books-and-Culture")
+    humourCartoonsQL = article.objects.filter(menu="Humour-and-Cartoons")
+    puzzlesGamesQL = article.objects.filter(menu="Puzzles-and-Games")
+    styleQL = article.objects.order_by('slug').reverse().filter(menu="Style")
+
+    
+
+    page = request.GET.get('page', 1)
+    paginatorall1 = Paginator(allQL, 3)
+    paginatorNews1 = Paginator(newsQL, 1)
+    paginatorMarkets1 = Paginator(marketsQL, 1)
+    paginatorPolitics1 = Paginator(politicsQL, 1)
+    paginatorFiction1 = Paginator(fictionQL, 1)
+    paginatorBooksCulture1 = Paginator(booksCultureQL, 1)
+    paginatorHumourCartoons1 = Paginator(humourCartoonsQL, 1)
+    paginatorPuzzleGames1 = Paginator(puzzlesGamesQL, 1)
+    paginatorStyle1 = Paginator(styleQ, 1)
+    try:
+      all_ = paginatorall1.page(page)
+      news_ = paginatorNews1.page(page)
+      markets_ = paginatorMarkets1.page(page)
+      politics_ = paginatorPolitics1.page(page)
+      fiction_ = paginatorFiction1.page(page)
+      booksCulture_ = paginatorBooksCulture1.page(page)
+      humourCartoons_ = paginatorHumourCartoons1.page(page)
+      puzzlesGames_ = paginatorPuzzleGames1.page(page)
+      style_ = paginatorStyle1.page(page)
+      
+
+    except PageNotAnInteger:
+      all_ = paginatorall.page(1)
+      news_ = paginatorNews.page(1)
+      markets_ = paginatorMarkets.page(1)
+      politics_ = paginatorPolitics.page(1)
+      fiction_ = paginatorFiction.page(1)
+      booksCulture_ = paginatorBooksCulture.page(1)
+      humourCartoons_ = paginatorHumourCartoons.page(1)
+      puzzlesGames_ = paginatorPuzzleGames.page(1)
+      style_ = paginatorStyle.page(1)
+      
+
+    except EmptyPage:
+      all_ = paginatorall.page(paginatorNews.num_pages)
+      news_ = paginatorNews.page(paginatorNews.num_pages)
+      markets_ = paginatorMarkets.page(paginatorMarkets.num_pages)
+      politics_ = paginatorPolitics.page(paginatorPolitics.num_pages)
+      fiction_ = paginatorFiction.page(paginatorFiction.num_pages)
+      booksCulture_ = paginatorBooksCulture.page(paginatorBooksCulture.num_pages)
+      humourCartoons_ = paginatorHumourCartoons.page(paginatorHumourCartoons.num_pages)
+      puzzlesGames_ = paginatorPuzzleGames.page(paginatorPuzzleGames.num_pages)
+      style_ = paginatorStyle.page(paginatorStyle.num_pages)
+
+  except:
+    print("failed")
+
   
  
 
@@ -123,7 +188,17 @@ def home(request):
     'booksCulture': booksCulture,   #done
     'humourCartoons': humourCartoons,
     'puzzleGames': puzzlesGames,  #done
-    'style': style,   
+    'style': style,
+    #-===========---------THE LIST VIEWS------------=======#
+    'all_': all_,
+    'news_': news_,       #done
+    'markets_': markets_,   #done
+    'politics_': politics_, #done
+    'fiction_': fiction_,   #done
+    'booksCulture_': booksCulture_,   #done
+    'humourCartoons_': humourCartoons_,
+    'puzzleGames_': puzzlesGames_,  #done
+    'style_': style_,   
   }
 
 
@@ -140,6 +215,7 @@ def articlelistView(request, menu):
 
 
   TOPICS = request.GET.get('menu')
+  print(TOPICS)
 
   # add a sorting algortithm
   topics = article.objects.order_by('slug').reverse().all().values('menu')
@@ -147,6 +223,7 @@ def articlelistView(request, menu):
 
   if topics:
     artliclelists = article.objects.filter(menu=menu)
+    print('=============================================')
     print(artliclelists)
     
   else:

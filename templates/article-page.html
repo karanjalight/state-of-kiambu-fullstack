@@ -26,7 +26,19 @@
     <h3 style="color: black; ">  {{ article.article_name}} </h3>
     <p>
 
-      {{ article.article }}
+      {{ article.article_paragraph_1 }}
+
+    </p>
+    <div class="container-fluid bg-dark  " style="height:150px;">
+      
+      <h5 style="font-size:40px; color:white; text-align:center; padding:40px;">ADS SPACE</h1>
+
+    </div>
+
+
+    <p>
+
+      {{ article.article_paragraph_2 }}
 
     </p>
   </div>
@@ -34,7 +46,12 @@
 
   <div class="container">
     <p   style="color: black ;"> Written By</p>
-    <i class="fa-solid fa-feather-pointed"></i><hp style="color:green ;"> <span></span>  &nbsp; <b> Liz Wambui </hp>
+    <i class="fa-solid fa-feather-pointed"></i><hp style="color:green ;"> <span></span>  &nbsp; <b>  {{ article.writer}} 
+      <br> 
+    <p style="color: black ;"> {{article.date}}</p>
+
+    </p>
+
   </div>
 
 
